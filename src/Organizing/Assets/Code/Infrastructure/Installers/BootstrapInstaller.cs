@@ -9,6 +9,10 @@ using Code.Gameplay.StaticData;
 using Code.Infrastructure.AssetManagement;
 using Code.Infrastructure.Identifiers;
 using Code.Infrastructure.Loading;
+using Code.Infrastructure.States.Factory;
+using Code.Infrastructure.States.GameStates;
+using Code.Infrastructure.States.StateMachine;
+using Code.Infrastructure.Systems;
 using Zenject;
 
 namespace Code.Infrastructure.Installers
@@ -24,8 +28,31 @@ namespace Code.Infrastructure.Installers
             BindContexts();
             BindGameplayServices();
             BindCameraProvider();
+            BindStateMachine();
+            BindStateFactory();
+            BindGameStates();
+            BindSystemFactory();
         }
 
+        private void BindStateMachine()
+        {
+            Container.BindInterfacesAndSelfTo<GameStateMachine>().AsSingle();
+        }
+
+        private void BindStateFactory()
+        {
+            Container.BindInterfacesAndSelfTo<StateFactory>().AsSingle();
+        }
+
+        private void BindGameStates()
+        {
+            Container.BindInterfacesAndSelfTo<BootstrapState>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LoadingHomeScreenState>().AsSingle();
+            Container.BindInterfacesAndSelfTo<HomeScreenState>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LoadingBattleState>().AsSingle();
+            Container.BindInterfacesAndSelfTo<BattleEnterState>().AsSingle();
+            Container.BindInterfacesAndSelfTo<BattleLoopState>().AsSingle(); 
+        }
 
         private void BindContexts()
         {
@@ -39,6 +66,11 @@ namespace Code.Infrastructure.Installers
             Container.BindInterfacesAndSelfTo<CameraProvider>().AsSingle();
         }
 
+        private void BindSystemFactory()
+        {
+            Container.Bind<ISystemFactory>().To<SystemFactory>().AsSingle();
+        }
+        
         private void BindGameplayServices()
         {
             Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
@@ -72,8 +104,8 @@ namespace Code.Infrastructure.Installers
 
         public void Initialize()
         {
-            Container.Resolve<IStaticDataService>().LoadAll();
-            Container.Resolve<ISceneLoader>().LoadScene(Scenes.Main);
+            // Container.Resolve<IStaticDataService>().LoadAll();
+            Container.Resolve<IGameStateMachine>().Enter<BootstrapState>();
         }
     }
 }

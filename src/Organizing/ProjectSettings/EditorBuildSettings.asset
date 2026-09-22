@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Boot.unity
     guid: bed898b562be02144a354e75e653f34a
   - enabled: 1
+    path: Assets/Scenes/HomeScreen.unity
+    guid: 436a68be574ff0e4da9c259abf711fd0
+  - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:
