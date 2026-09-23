@@ -1,63 +1,40 @@
-﻿using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using System;
+using UnityEngine;
 
 namespace Code.Gameplay.Input.Service
 {
-    public class InputService : IInputService
+    public class InputService : IInputService, IDisposable
     {
-        private Camera _mainCamera;
-        private Vector3 _screenPosition;
-
-        public Camera CameraMain
+        private readonly InputSystem_Actions _actions;
+ 
+        public InputService()
         {
-            get
-            {
-                if(_mainCamera == null && Camera.main != null)
-                    _mainCamera = Camera.main;
-        
-                return _mainCamera;
-            }
+            _actions = new InputSystem_Actions();
+            _actions.Player.Enable();
         }
-
-        public Vector2 GetScreenMousePosition() => 
-            CameraMain ? (Vector2) UnityEngine.Input.mousePosition : new Vector2();
-        
-
-        public bool GetJumpButtonDown() => UnityEngine.Input.GetButtonDown("Jump");
-        
-        public float GetHorizontalMousePosition() => UnityEngine.Input.GetAxisRaw("Mouse X");
-        public float GetVerticalMousePosition() => UnityEngine.Input.GetAxisRaw("Mouse Y");
-        
+ 
+        public Vector2 GetMoveAxis() =>
+            _actions.Player.Move.ReadValue<Vector2>();
+ 
+        public Vector2 GetLookDelta() =>
+            _actions.Player.Look.ReadValue<Vector2>();
+ 
+        public bool HasMoveInput() =>
+            GetMoveAxis() != Vector2.zero;
+ 
+        public bool HasLookInput() =>
+            GetLookDelta() != Vector2.zero;
+ 
         public bool GetInteractButtonDown() =>
-            UnityEngine.Input.GetKeyDown(KeyCode.E);
-        
+            _actions.Player.Interact.WasPressedThisFrame();
+ 
         public bool GetDropButtonDown() =>
-            UnityEngine.Input.GetKeyDown(KeyCode.G);
-
-        public Vector2 GetWorldMousePosition()
+            _actions.Player.Drop.WasPressedThisFrame();
+ 
+        public void Dispose()
         {
-            if(CameraMain == null)
-                return Vector2.zero;
-      
-            _screenPosition.x = UnityEngine.Input.mousePosition.x;
-            _screenPosition.y = UnityEngine.Input.mousePosition.y;
-            return CameraMain.ScreenToWorldPoint(_screenPosition);
+            _actions.Player.Disable();
+            _actions.Dispose();
         }
-
-        public bool HasAxisInput() => GetHorizontalAxis() != 0 || GetVerticalAxis() != 0;
-        public bool HasMouseAxisInput() => GetHorizontalMousePosition() != 0 || GetVerticalMousePosition() != 0;
-    
-        public float GetVerticalAxis() => UnityEngine.Input.GetAxis("Vertical");
-        public float GetHorizontalAxis() => UnityEngine.Input.GetAxis("Horizontal");
-    
-
-        public bool GetLeftMouseButton() => 
-            UnityEngine.Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject();
-
-        public bool GetLeftMouseButtonDown() =>
-            UnityEngine.Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject();
-    
-        public bool GetLeftMouseButtonUp() => 
-            UnityEngine.Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject();
     }
 }

@@ -21,17 +21,17 @@ namespace Code.Infrastructure.Installers
     {
         public override void InstallBindings()
         {
-            BindInputService();
-            BindInfrastructureServices();
-            BindAssetManagementServices();
-            BindCommonServices();
             BindContexts();
-            BindGameplayServices();
-            BindCameraProvider();
+            BindInfrastructureServices();
             BindStateMachine();
             BindStateFactory();
             BindGameStates();
+            BindGameplayServices();
+            BindAssetManagementServices();
             BindSystemFactory();
+            BindInputService();
+            BindCommonServices();
+            BindCameraProvider();
         }
 
         private void BindStateMachine()

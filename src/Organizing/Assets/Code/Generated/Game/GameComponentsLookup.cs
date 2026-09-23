@@ -8,15 +8,39 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
+    public const int Destructed = 0;
+    public const int SelfDestructTimer = 1;
+    public const int View = 2;
+    public const int Id = 3;
+    public const int AxisInput = 4;
+    public const int DropInput = 5;
+    public const int Input = 6;
+    public const int InteractInput = 7;
+    public const int MouseAxisInput = 8;
 
-
-    public const int TotalComponents = 0;
+    public const int TotalComponents = 9;
 
     public static readonly string[] componentNames = {
-
+        "Destructed",
+        "SelfDestructTimer",
+        "View",
+        "Id",
+        "AxisInput",
+        "DropInput",
+        "Input",
+        "InteractInput",
+        "MouseAxisInput"
     };
 
     public static readonly System.Type[] componentTypes = {
-
+        typeof(Code.Common.Destructed),
+        typeof(Code.Common.SelfDestructTimer),
+        typeof(Code.Common.View),
+        typeof(Code.Gameplay.Common.Id),
+        typeof(Code.Gameplay.Input.InputComponents.AxisInput),
+        typeof(Code.Gameplay.Input.InputComponents.DropInput),
+        typeof(Code.Gameplay.Input.InputComponents.Input),
+        typeof(Code.Gameplay.Input.InputComponents.InteractInput),
+        typeof(Code.Gameplay.Input.InputComponents.MouseAxisInput)
     };
 }
