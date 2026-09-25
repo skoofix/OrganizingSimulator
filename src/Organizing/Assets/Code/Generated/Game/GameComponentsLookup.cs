@@ -11,20 +11,52 @@ public static class GameComponentsLookup {
     public const int Destructed = 0;
     public const int SelfDestructTimer = 1;
     public const int View = 2;
-    public const int Id = 3;
-    public const int AxisInput = 4;
-    public const int DropInput = 5;
-    public const int Input = 6;
-    public const int InteractInput = 7;
-    public const int MouseAxisInput = 8;
+    public const int CharacterController = 3;
+    public const int Id = 4;
+    public const int Rigidbody = 5;
+    public const int Transform = 6;
+    public const int CameraAttached = 7;
+    public const int Head = 8;
+    public const int LookSensitivity = 9;
+    public const int Pitch = 10;
+    public const int Yaw = 11;
+    public const int Acceleration = 12;
+    public const int Deceleration = 13;
+    public const int Direction = 14;
+    public const int Gravity = 15;
+    public const int Moving = 16;
+    public const int Speed = 17;
+    public const int Velocity = 18;
+    public const int Player = 19;
+    public const int AxisInput = 20;
+    public const int DropInput = 21;
+    public const int Input = 22;
+    public const int InteractInput = 23;
+    public const int MouseAxisInput = 24;
 
-    public const int TotalComponents = 9;
+    public const int TotalComponents = 25;
 
     public static readonly string[] componentNames = {
         "Destructed",
         "SelfDestructTimer",
         "View",
+        "CharacterController",
         "Id",
+        "Rigidbody",
+        "Transform",
+        "CameraAttached",
+        "Head",
+        "LookSensitivity",
+        "Pitch",
+        "Yaw",
+        "Acceleration",
+        "Deceleration",
+        "Direction",
+        "Gravity",
+        "Moving",
+        "Speed",
+        "Velocity",
+        "Player",
         "AxisInput",
         "DropInput",
         "Input",
@@ -36,7 +68,23 @@ public static class GameComponentsLookup {
         typeof(Code.Common.Destructed),
         typeof(Code.Common.SelfDestructTimer),
         typeof(Code.Common.View),
+        typeof(Code.Gameplay.Common.CharacterControllerComponent),
         typeof(Code.Gameplay.Common.Id),
+        typeof(Code.Gameplay.Common.RigidbodyComponent),
+        typeof(Code.Gameplay.Common.TransformComponent),
+        typeof(Code.Gameplay.Features.Look.CameraAttached),
+        typeof(Code.Gameplay.Features.Look.Head),
+        typeof(Code.Gameplay.Features.Look.LookSensitivity),
+        typeof(Code.Gameplay.Features.Look.Pitch),
+        typeof(Code.Gameplay.Features.Look.Yaw),
+        typeof(Code.Gameplay.Features.Movement.Acceleration),
+        typeof(Code.Gameplay.Features.Movement.Deceleration),
+        typeof(Code.Gameplay.Features.Movement.Direction),
+        typeof(Code.Gameplay.Features.Movement.Gravity),
+        typeof(Code.Gameplay.Features.Movement.Moving),
+        typeof(Code.Gameplay.Features.Movement.Speed),
+        typeof(Code.Gameplay.Features.Movement.Velocity),
+        typeof(Code.Gameplay.Features.Player.Player),
         typeof(Code.Gameplay.Input.InputComponents.AxisInput),
         typeof(Code.Gameplay.Input.InputComponents.DropInput),
         typeof(Code.Gameplay.Input.InputComponents.Input),

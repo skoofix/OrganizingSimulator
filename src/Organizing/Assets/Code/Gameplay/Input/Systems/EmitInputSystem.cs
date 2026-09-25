@@ -23,6 +23,9 @@ namespace Code.Gameplay.Input.Systems
                     input.ReplaceAxisInput(_inputService.GetMoveAxis());
                 else if (input.hasAxisInput)
                     input.RemoveAxisInput();
+                
+                input.isDropInput = _inputService.GetDropButtonDown();
+                input.isInteractInput = _inputService.GetInteractButtonDown();
             }
         }
     }

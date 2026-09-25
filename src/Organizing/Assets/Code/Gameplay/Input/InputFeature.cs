@@ -7,13 +7,10 @@ namespace Code.Gameplay.Input
     {
         public InputFeature(ISystemFactory systems)
         {
-            
-         //   Add(systems.Create<LockCursorSystem>());
             Add(systems.Create<InitializeInputSystem>());
+            Add(systems.Create<LockCursorSystem>());
             Add(systems.Create<EmitInputSystem>());
-         //   Add(systems.Create<EmitMouseInputSystem>());
-         //   Add(systems.Create<EmitInteractInputSystem>());
-         //   Add(systems.Create<EmitDropInputSystem>());
+            Add(systems.Create<EmitMouseInputSystem>());
         }
     }
 }
